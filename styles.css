@@ -34,42 +34,86 @@ body, html {
 .sakura-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
 .sakura { position: absolute; top: -10px; background-color: #ffb7c5; border-radius: 50%; opacity: 0.6; animation: fall linear infinite; }
 @keyframes fall { to { transform: translateY(100vh) rotate(360deg); } }
-
-/* --- TABLERO BENTO --- */
-.bento-full-screen { height: 100vh; display: flex; justify-content: center; align-items: center; padding: 1rem; position: relative; z-index: 20; }
+/* --- TABLERO BENTO (ACTUALIZADO A 4 COLUMNAS) --- */
+.bento-full-screen { 
+    height: 100vh; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 1rem; 
+    position: relative; 
+    z-index: 20; 
+}
 
 .bento-wood-frame {
-    background-color: var(--bento-frame); background-image: var(--wood-texture);
-    padding: 12px; border-radius: 16px;
+    background-color: var(--bento-frame); 
+    background-image: var(--wood-texture);
+    padding: 12px; 
+    border-radius: 16px;
     box-shadow: 15px 15px 40px rgba(0,0,0,0.25), inset 0 0 10px rgba(0,0,0,0.3);
-    max-width: 950px; width: 100%;
+    max-width: 1100px; /* Un poco más ancho para que las 4 cajas no se vean apretadas */
+    width: 100%;
 }
 
 .bento-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr 1fr; /* Fila simétrica */
+    grid-template-columns: repeat(4, 1fr); /* LA CLAVE: 4 COLUMNAS */
+    grid-template-rows: auto auto; 
     gap: 12px;
 }
 
 /* CAJAS INDIVIDUALES */
-/* CAJAS INDIVIDUALES */
 .bento-box {
-    background-color: var(--bento-box); background-image: var(--wood-texture);
-    border-radius: 8px; padding: 1.5rem;
-    display: flex; flex-direction: column; justify-content: flex-start; /* AQUÍ ESTÁ EL FIX DEL ESPACIO MUERTO */
-    border-bottom: 2px solid rgba(0,0,0,0.4); border-right: 2px solid rgba(0,0,0,0.3);
-    border-top: 1px solid rgba(255,255,255,0.08); border-left: 1px solid rgba(255,255,255,0.05);
+    background-color: var(--bento-box); 
+    background-image: var(--wood-texture);
+    border-radius: 8px; 
+    padding: 1.5rem;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-start;
+    border-bottom: 2px solid rgba(0,0,0,0.4); 
+    border-right: 2px solid rgba(0,0,0,0.3);
+    border-top: 1px solid rgba(255,255,255,0.08); 
+    border-left: 1px solid rgba(255,255,255,0.05);
     box-shadow: inset 3px 3px 10px rgba(0,0,0,0.3);
 }
 
-/* ACENTOS */
-.hero-box { grid-column: span 2; position: relative; border-top: 3px solid var(--stamp-red); }
-.lang-box { grid-column: span 1; border-top: 3px solid var(--gold); } /* Renombrada a lang-box */
-.exp-box { grid-column: span 1; border-top: 3px solid var(--jade); }
-.project-box { grid-column: span 1; border-top: 3px solid var(--indigo); }
-.contact-box { grid-column: span 1; border-top: 3px solid var(--copper); justify-content: space-between; } /* Para que el form y redes se distribuyan bien */
-/* Títulos */
+/* --- DISTRIBUCIÓN DE ESPACIOS (4 ABAJO) --- */
+
+/* Fila Superior: Perfil ocupa 3 y Proyectos ocupa 1 = 4 total */
+.hero-box { 
+    grid-column: span 3; 
+    position: relative; 
+    border-top: 3px solid var(--stamp-red); 
+}
+
+.project-box { 
+    grid-column: span 1; 
+    border-top: 3px solid var(--indigo); 
+}
+
+/* Fila Inferior: Cada una ocupa 1 columna = 4 total */
+.exp-box { 
+    grid-column: span 1; 
+    border-top: 3px solid var(--jade); 
+}
+
+.cert-box { 
+    grid-column: span 1; 
+    border-top: 3px solid var(--gold); 
+}
+
+.lang-box { 
+    grid-column: span 1; 
+    border-top: 3px solid var(--gold); 
+    position: relative;
+}
+
+.contact-box { 
+    grid-column: span 1; 
+    border-top: 3px solid var(--copper); 
+    justify-content: space-between; 
+}
 h3 { font-family: var(--font-serif); font-size: 1.1rem; margin-bottom: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.4rem; }
 .accent-gold { color: var(--gold); }
 .accent-jade { color: var(--jade); }
